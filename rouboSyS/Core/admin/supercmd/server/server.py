@@ -34,17 +34,36 @@ def refuseInfo():
   info3 = "------------------------------------------------\n"
   return info1+info2+info3
 
+def passwdComing(clientsock, clientaddr):
+  for trycount in range(1, 4):
+    clientsock.sendall(loginInfo())
+    data = clientsock.recv(1024)
+    print '>_ ...', data.strip()
+    print '>_ Check the login info ...'
+    if data.strip() == "ll123456":
+      clientsock.sendall(welcomeInfo())
+      print '>_ Login ok ...'
+      return True
+    else:
+      print '>_ Login failed ...'
+  clientsock.sendall(refuseInfo())
+  return False
+
+
 def start():
   sfd = startListen()
   while 1:
     clientSock, clientAddr = sfd.accept()
-    clientfile = clientSock.makefile('rw', 1)
-    clientfile.write(loginInfo())
-    line = clientfile.readline().strip()
-    if line == "ll123456":
-      clientfile.write(welcomeInfo())
+    print '>_ Connected from ', clientAddr
+    print '>_ Waiting for login ...'
+    ###############################################
+    # Login by password
+    passby = passwdComing(clientSock, clientAddr)
+    if passby :
+      print '>_ Go to work or go on check admin...'
     else:
-      clientfile.write(refuseInfo())
-    clientfile.close()
+      clientSock.close()
+    ###############################################
+    # Go to work
     clientSock.close()
     return 0
