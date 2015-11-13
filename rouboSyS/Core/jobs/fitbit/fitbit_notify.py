@@ -22,9 +22,10 @@ class fitbitNotify:
       alarm = fitbitAlarms()
       if msg.topic == "roubosys/fitbit/alarm/set":
         payload = string.split(msg.payload, '|')
-        msg   = payload[0]
-        time  = payload[1]
+        msg   = payload[1]
+        time  = payload[0]
         other = payload[2]
+        msg   = msg +'|'+ other
         alarm.updatealarm(msg, time, other)
     except KeyError:
       pass
