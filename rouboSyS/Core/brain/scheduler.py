@@ -16,11 +16,11 @@ jobRecord = {}
 def startJobByName(jobList, jobName):
   if jobName == "#":
     for job in jobList.jobList:
-      work = multip.Process(name = job, target = getattr(jobList, job), args= ('start'))
+      work = multip.Process(name = job, target = getattr(jobList, job))
       work.start()
       jobRecord[job] = work
   else:
-    work = multip.Process(name = jobName, target = getattr(jobList, jobName), args = ('start'))
+    work = multip.Process(name = jobName, target = getattr(jobList, jobName))
     work.start()
     jobRecord[jobName] = work
 
@@ -41,11 +41,11 @@ def stopJobByName(jobList, jobName):
 
 if __name__ == '__main__':
   rouboSysJobs = jobs.rouboSysJobs()
-  startJobByName(rouboSysJobs, "fitbit")
-  startJobByName(rouboSysJobs, "fitbit_notify")
+  #startJobByName(rouboSysJobs, "fitbit")
+  #startJobByName(rouboSysJobs, "fitbit_notify")
   #startJobByName(rouboSysJobs, "demo")
   #startJobByName(rouboSysJobs, "demo1")
-  #startJobByName(rouboSysJobs, "#")
+  startJobByName(rouboSysJobs, "#")
   ## start the super cmd line server
   #superCmdLine = supercmd.superCmdLine()
   #startJobByName(superCmdLine, "server")
