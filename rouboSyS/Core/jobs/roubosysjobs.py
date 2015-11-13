@@ -5,20 +5,24 @@
 ''' 系统的任务中心，负责导入所有的jobs，并提供reload单个job模块的接口 '''
 '''-------------------------------------------------------------------'''
 
-import demo.demojob as demo
 import demo1.demojob as demo1
 import fitbit.rfitbit as fitbit
+import fitbit.fitbit_notify.fitbitNotify as fitbit_notify
 
 class rouboSysJobs:
-  jobList = ("demo", "demo1", "fitbit")
+  jobList = ("fitbit", "fitbit_notify")
+
   def __init__(self):
     print 'init the rouboSysJobs'
-  def demo(self):
-    demo.demotast()
+
   def demo1(self):
     demo1.demotast()
+
   def fitbit(self):
-    fitbit.loginMyFitbit()
+    fitbit.fitbit_forever()
+
+  def fitbit_notify(self):
+    fitbit_notify.loop_forever()
 
 if __name__ == '__main__':
-  demo.demotast()
+  demo1.demotast()

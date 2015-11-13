@@ -42,6 +42,7 @@ def stopJobByName(jobList, jobName):
 if __name__ == '__main__':
   rouboSysJobs = jobs.rouboSysJobs()
   startJobByName(rouboSysJobs, "fitbit")
+  startJobByName(rouboSysJobs, "fitbit_notify")
   #startJobByName(rouboSysJobs, "demo")
   #startJobByName(rouboSysJobs, "demo1")
   #startJobByName(rouboSysJobs, "#")
