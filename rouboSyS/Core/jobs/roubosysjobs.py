@@ -20,7 +20,7 @@ class rouboSysJobs:
 
   def fitbit(self):
     fitbit = rFitbit()
-    fitbit.fitbit_forever()
+    fitbit.loop_forever()
 
   def fitbit_notify(self):
     fitbit_notify = fitbitNotify()
