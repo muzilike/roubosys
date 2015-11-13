@@ -14,4 +14,5 @@ rouboSyS的README由其自身的wiki目录维护。
 sudo apt-get install mosquitto mosquitto-clients
 sudo pip install paho-mqtt
 sudo apt-get install redis-server
-udo pip install python-redis
+sudo pip install python-redis
+sudo pip install requests requests_oauthlib

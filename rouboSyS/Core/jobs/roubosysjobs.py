@@ -6,8 +6,8 @@
 '''-------------------------------------------------------------------'''
 
 import demo1.demojob as demo1
-import fitbit.rfitbit as fitbit
-import fitbit.fitbit_notify.fitbitNotify as fitbit_notify
+from fitbit.rfitbit import rFitbit as fitbit
+from fitbit.fitbit_notify import fitbitNotify as fitbit_notify
 
 class rouboSysJobs:
   jobList = ("fitbit", "fitbit_notify")
