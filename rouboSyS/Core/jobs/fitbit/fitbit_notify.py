@@ -6,10 +6,10 @@ import paho.mqtt.client as mqtt
 from fitbit_alarms import fitbitAlarms
 
 class fitbitNotify:
-  topic = "roubosys/fitbit"
+  topic = "roubosys/fitbit/alarm/set"
   hosts = "127.0.0.1"
-  ports = "1883"
-  masks = "60"
+  ports = 1883
+  masks = 60
 
   # This callback for when the client recevice a CONNECTACK response from the server
   def on_connect(self, client, userdata, flags, resultcode):
