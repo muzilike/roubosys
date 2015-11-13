@@ -6,8 +6,8 @@
 '''-------------------------------------------------------------------'''
 
 import demo1.demojob as demo1
-from fitbit.rfitbit import rFitbit as fitbit
-from fitbit.fitbit_notify import fitbitNotify as fitbit_notify
+from fitbit.rfitbit import rFitbit
+from fitbit.fitbit_notify import fitbitNotify
 
 class rouboSysJobs:
   jobList = ("fitbit", "fitbit_notify")
@@ -19,9 +19,11 @@ class rouboSysJobs:
     demo1.demotast()
 
   def fitbit(self):
+    fitbit = rFitbit()
     fitbit.fitbit_forever()
 
   def fitbit_notify(self):
+    fitbit_notify = fitbitNotify()
     fitbit_notify.loop_forever()
 
 if __name__ == '__main__':
