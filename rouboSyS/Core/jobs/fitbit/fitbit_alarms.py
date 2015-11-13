@@ -13,7 +13,7 @@ class fitbitAlarms:
 
   def initdb(self):
     parser  = ConfigParser.SafeConfigParser()
-    parser.read('configdb.ini')
+    parser.read('config.ini')
     db_host  = str(parser.get('db', 'DB_HOST'))
     db_port  = str(parser.get('db', 'DB_PORT'))
     db_index = str(parser.get('db', 'DB_INDEX'))
