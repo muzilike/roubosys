@@ -4,6 +4,7 @@
 import string
 import time
 from fitbit_alarms import fitbitAlarms
+from fitbit_bearychat import fitbitBearyChat
 
 class rFitbit:
 
@@ -35,7 +36,11 @@ class rFitbit:
           timeStamp = int(time.mktime(timedata))
           nowStamp = int(time.mktime(nowtime))
           if nowStamp >= timeStamp and v[2] != "tomorrow":
+            fbbearychat = fitbitBearyChat()
+            fbbearychat.pushchat(v[1], None)
+            print "alarm"
             alarm.disablealarm(key)
+      return
       time.sleep(self.idle_time)
 
 
