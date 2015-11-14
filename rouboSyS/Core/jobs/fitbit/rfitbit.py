@@ -37,7 +37,7 @@ class rFitbit:
           nowStamp = int(time.mktime(nowtime))
           if nowStamp >= timeStamp and v[2] != "tomorrow":
             fbbearychat = fitbitBearyChat()
-            fbbearychat.pushchat(v[1], None)
+            fbbearychat.pushchatcurl(v[1], None)
             alarm.disablealarm(key)
       time.sleep(self.idle_time)
 
