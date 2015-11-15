@@ -41,7 +41,7 @@ class rFitbit:
               fbbearychat = fitbitBearyChat()
               fbbearychat.pushchatcurl(v[1], None)
               alarm.disablealarm(key)
-              if v[2] == "weekup":
+              if v[2] == "wakeup":
                 nowweather = fitbit_weather.now()
                 nowweather = u"今天的天气是：\n" + nowweather
                 fbbearychat.pushchatcurl(nowweather)
