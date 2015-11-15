@@ -3,6 +3,7 @@
 
 import string
 import time
+import fitbit_weather
 from fitbit_alarms import fitbitAlarms
 from fitbit_bearychat import fitbitBearyChat
 
@@ -25,20 +26,27 @@ class rFitbit:
 
   def loop_forever(self):
     while True:
-      nowtime = time.localtime(time.time())
-      alarm = fitbitAlarms()
-      lists = alarm.getalarmslist()
-      if lists is not None:
-        for key in lists.keys():
-          v = string.split(lists[key], '|')
-          alarm_time = str(nowtime.tm_year)+str(nowtime.tm_mon)+str(nowtime.tm_mday)+v[0]+":"+str(nowtime.tm_sec)
-          timedata = time.strptime(alarm_time, "%Y%m%d%H:%M:%S")
-          timeStamp = int(time.mktime(timedata))
-          nowStamp = int(time.mktime(nowtime))
-          if nowStamp >= timeStamp and v[2] != "tomorrow":
-            fbbearychat = fitbitBearyChat()
-            fbbearychat.pushchatcurl(v[1], None)
-            alarm.disablealarm(key)
+      try:
+        nowtime = time.localtime(time.time())
+        alarm = fitbitAlarms()
+        lists = alarm.getalarmslist()
+        if lists is not None:
+          for key in lists.keys():
+            v = string.split(lists[key], '|')
+            alarm_time = str(nowtime.tm_year)+str(nowtime.tm_mon)+str(nowtime.tm_mday)+v[0]+":"+str(nowtime.tm_sec)
+            timedata = time.strptime(alarm_time, "%Y%m%d%H:%M:%S")
+            timeStamp = int(time.mktime(timedata))
+            nowStamp = int(time.mktime(nowtime))
+            if nowStamp >= timeStamp and nowStamp-timeStamp < self.idle_time*2:
+              fbbearychat = fitbitBearyChat()
+              fbbearychat.pushchatcurl(v[1], None)
+              alarm.disablealarm(key)
+              if v[2] == "weekup":
+                nowweather = fitbit_weather.now()
+                nowweather = u"今天的天气是：\n" + nowweather
+                fbbearychat.pushchatcurl(nowweather)
+      except KeyError:
+        pass
       time.sleep(self.idle_time)
 
 
