@@ -16,6 +16,8 @@ class fitbitBearyChat:
     urllib2.urlopen(req)
 
   def pushchatcurl(self, message, msgtype):
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
     gourl = "http://hook.bearychat.com/\=bw7nU/incoming/b3abc70e3fb1b19f89bccc3c3513984d"
     header = '"Content-Type: application/json"'
     godata = '\'{"text": "'+message +'"}\' '
