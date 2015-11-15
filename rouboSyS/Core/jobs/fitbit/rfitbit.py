@@ -44,7 +44,7 @@ class rFitbit:
               if v[2] == "wakeup":
                 nowweather = fitbit_weather.now()
                 nowweather = u"今天的天气是：\n" + nowweather
-                fbbearychat.pushchatcurl(nowweather)
+                fbbearychat.pushchatcurl(nowweather, None)
       except KeyError:
         pass
       time.sleep(self.idle_time)
